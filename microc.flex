@@ -177,7 +177,7 @@ ALFANUM     [a-zA-Z0-9_]
                         if(ultimo_token==INTEGERCONST||ultimo_token==ID||ultimo_token==RPAREN||ultimo_token==RBRACKET){
                             /*vem depois de um valor -> é subtracao */
                             /*devolve os digitos para serem lidos depois */
-                            yyless(0); /*devolve tudo de volta */
+                            yyless(1); /*matem só o "-", devolve os digitos */
                             ultimo_token = MINUS;
                             return MINUS; /*retorna só o - como operador */
                         }else{
@@ -189,6 +189,7 @@ ALFANUM     [a-zA-Z0-9_]
                     }
 {DIGIT}+                {
                         guarda_lexema();
+                        ultimo_token = INTEGERCONST
                         return INTEGERCONST;
                     }                  
 
