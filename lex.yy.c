@@ -954,7 +954,7 @@ YY_RULE_SETUP
                         if(ultimo_token==INTEGERCONST||ultimo_token==ID||ultimo_token==RPAREN||ultimo_token==RBRACKET){
                             /*vem depois de um valor -> é subtracao */
                             /*devolve os digitos para serem lidos depois */
-                            yyless(0); /*devolve tudo de volta */
+                            yyless(1); /*matem só o "-", devolve os digitos */
                             ultimo_token = MINUS;
                             return MINUS; /*retorna só o - como operador */
                         }else{
@@ -970,6 +970,7 @@ YY_RULE_SETUP
 #line 191 "microc.flex"
 {
                         guarda_lexema();
+                        ultimo_token = INTEGERCONST
                         return INTEGERCONST;
                     }                  
 	YY_BREAK
@@ -996,12 +997,12 @@ YY_RULE_SETUP
   * longo -- veja a explicacao na Secao 2 do enunciado). */
 case 12:
 YY_RULE_SETUP
-#line 221 "microc.flex"
+#line 222 "microc.flex"
 { ultimo_token=EQ;return EQ; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 222 "microc.flex"
+#line 223 "microc.flex"
 { ultimo_token=ASSIGN;return ASSIGN; }
 	YY_BREAK
 /* TODO(aluno): complete os demais operadores que compartilham prefixo,
@@ -1014,108 +1015,108 @@ YY_RULE_SETUP
   */
 case 14:
 YY_RULE_SETUP
-#line 232 "microc.flex"
+#line 233 "microc.flex"
 {ultimo_token=NEQ;return NEQ; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 233 "microc.flex"
+#line 234 "microc.flex"
 {ultimo_token=NOT;return NOT; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 234 "microc.flex"
+#line 235 "microc.flex"
 {ultimo_token=LEQ;return LEQ; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 235 "microc.flex"
+#line 236 "microc.flex"
 {ultimo_token=LT;return LT; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 236 "microc.flex"
+#line 237 "microc.flex"
 {ultimo_token=GEQ;return GEQ; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 237 "microc.flex"
+#line 238 "microc.flex"
 {ultimo_token=GT;return GT; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 238 "microc.flex"
+#line 239 "microc.flex"
 {ultimo_token=AND;return AND; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 239 "microc.flex"
+#line 240 "microc.flex"
 {ultimo_token=OR;return OR; }
 	YY_BREAK
 /* --- Operadores aritmeticos e simbolos de pontuacao (ja prontos) ------ */
 case 22:
 YY_RULE_SETUP
-#line 242 "microc.flex"
+#line 243 "microc.flex"
 { ultimo_token=PLUS;return PLUS; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 243 "microc.flex"
+#line 244 "microc.flex"
 { ultimo_token=MINUS;return MINUS; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 244 "microc.flex"
+#line 245 "microc.flex"
 { ultimo_token=MUL;return MUL; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 245 "microc.flex"
+#line 246 "microc.flex"
 { ultimo_token=DIV;return DIV; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 246 "microc.flex"
+#line 247 "microc.flex"
 { ultimo_token=MOD;return MOD; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 247 "microc.flex"
+#line 248 "microc.flex"
 { ultimo_token=SEMICOLON;return SEMICOLON; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 248 "microc.flex"
+#line 249 "microc.flex"
 { ultimo_token=COMMA;return COMMA; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 249 "microc.flex"
+#line 250 "microc.flex"
 { ultimo_token=LPAREN;return LPAREN; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 250 "microc.flex"
+#line 251 "microc.flex"
 { ultimo_token=RPAREN;return RPAREN; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 251 "microc.flex"
+#line 252 "microc.flex"
 { ultimo_token=LBRACE;return LBRACE; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 252 "microc.flex"
+#line 253 "microc.flex"
 { ultimo_token=RBRACE;return RBRACE; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 253 "microc.flex"
+#line 254 "microc.flex"
 { ultimo_token=LBRACKET;return LBRACKET; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 254 "microc.flex"
+#line 255 "microc.flex"
 { ultimo_token=RBRACKET;return RBRACKET; }
 	YY_BREAK
 /* --- Caractere invalido -------------------------------------------------
@@ -1123,7 +1124,7 @@ YY_RULE_SETUP
   * regra anterior. Deve ser SEMPRE a ultima regra do arquivo. */
 case 35:
 YY_RULE_SETUP
-#line 259 "microc.flex"
+#line 260 "microc.flex"
 {
                         microc_yylval.error_msg = strdup(yytext);
                         return UNDEF;
@@ -1131,10 +1132,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 264 "microc.flex"
+#line 265 "microc.flex"
 ECHO;
 	YY_BREAK
-#line 1138 "lex.yy.c"
+#line 1139 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2137,7 +2138,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 264 "microc.flex"
+#line 265 "microc.flex"
 
 
 /* -----------------------------------------------------------------------

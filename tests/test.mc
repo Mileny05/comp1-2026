@@ -54,5 +54,37 @@ int main() {
         print("x nao e negativo");
     }
 
+     /* ===== TESTES ADICIONAIS ===== */
+
+    /* Teste: inteiros negativos */
+    int neg = -5;
+    int sub = 10 - 3;
+    int neg2 = -x;
+
+    /* Teste: operadores relacionais restantes */
+    if (x != y) { print("diferente"); }
+    if (x < y) { print("menor"); }
+    if (x > y) { print("maior"); }
+
+    /* Teste: operadores aritmeticos */
+    int soma = x + y;
+    int mod = x % y;
+    int div = x / y;
+
+    /* Teste: colchetes com expressao */
+    letras[2] = 'e';
+    letras[3] = 'l';
+
+    /* Teste: negativo apos parenteses */
+    int neg3 = fatorial(-1);
+
     return 0;
 }
+/* ===== CASOS DE ERRO LEXICO ===== */
+/* Estes casos devem gerar UNDEF no scanner */
+
+@    /* caractere invalido */
+#    /* caractere invalido */
+$    /* caractere invalido */
+*/   /* comentario nao iniciado */
+/* este comentario nunca fecha
