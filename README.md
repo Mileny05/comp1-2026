@@ -73,7 +73,7 @@ O programa lê o arquivo Micro C informado, imprime os tokens reconhecidos e rep
 |         Nome            |  Matrícula   |
 |-------------------------|--------------|
 | Mileny de Almeida Tobias| 202319040282 |
-| _preencher (se houver dupla)_ | _preencher_ |
+| Maryana Silva Catonho| 202319040649 |
 
 ## 🎓 Disciplina
 
