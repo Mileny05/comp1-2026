@@ -970,7 +970,7 @@ YY_RULE_SETUP
 #line 191 "microc.flex"
 {
                         guarda_lexema();
-                        ultimo_token = INTEGERCONST
+                        ultimo_token = INTEGERCONST;
                         return INTEGERCONST;
                     }                  
 	YY_BREAK
