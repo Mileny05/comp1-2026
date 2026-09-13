@@ -22,6 +22,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 /* ---------------------------------------------------------------------
  * 1. VOCABULARIO DE TOKENS (equivalente a tokens.h)
  * ------------------------------------------------------------------- */
@@ -76,6 +77,8 @@ YYSTYPE microc_yylval;
  * toda vez que uma quebra de linha for consumida pelo scanner (seja em
  * codigo "normal", dentro de comentarios ou dentro de strings). */
 int linha_atual = 1;
+int linha_atual;
+int ultimo_token;  /* guarda o último token reconhecido, usado para inteiros negativos*/
 
 /* Funcao auxiliar para preencher microc_yylval.symbol com uma copia do
  * texto reconhecido (yytext). Sinta-se livre para usar/adaptar. */
@@ -142,6 +145,23 @@ ALFANUM     [a-zA-Z0-9_]
   * guarda_lexema() (ou equivalente) quando o token for de fato ID. */
 {LETRA}{ALFANUM}*   {
                         /* TODO(aluno): reconhecer palavras reservadas aqui */
+                        if(strcmp(yytext,"if")==0){
+                            return IF;
+                        }else if(strcmp(yytext,"main")==0){
+                            return MAIN;
+                        }else if(strcmp(yytext,"else")==0){
+                            return ELSE;
+                        }else if(strcmp(yytext,"for")==0){
+                            return FOR;
+                        }else if(strcmp(yytext,"return")==0){
+                            return RETURN;
+                        }else if(strcmp(yytext,"int")==0){
+                            return INT;
+                        }else if(strcmp(yytext,"char")==0){
+                            return CHAR;
+                        }else if(strcmp(yytext,"print")==0){
+                            return PRINT;
+                        }
                         guarda_lexema();
                         return ID;
                     }
@@ -153,10 +173,24 @@ ALFANUM     [a-zA-Z0-9_]
   * tecnica de lookahead discutida em aula (veja o operador MINUS mais
   * abaixo) para decidir quando um '-' faz parte do numero e quando ele
   * e, na verdade, o operador de subtracao. */
-{DIGIT}+            {
+"-"{DIGIT}+            {
+                        if(ultimo_token==INTEGERCONST||ultimo_token==ID||ultimo_token==RPAREN||ultimo_token==RBRACKET){
+                            /*vem depois de um valor -> é subtracao */
+                            /*devolve os digitos para serem lidos depois */
+                            yyless(0); /*devolve tudo de volta */
+                            ultimo_token = MINUS;
+                            return MINUS; /*retorna só o - como operador */
+                        }else{
+                            /*não vem depois de um valor -> é numero negativo */
+                            guarda_lexema();
+                            ultimo_token = INTEGERCONST;
+                            return INTEGERCONST;
+                        }
+                    }
+{DIGIT}+                {
                         guarda_lexema();
                         return INTEGERCONST;
-                    }
+                    }                  
 
  /* --- Constantes de caractere --------------------------------------------
   * TODO(aluno): reconhecer o padrao 'x' (aspas simples, um caractere,
@@ -183,8 +217,8 @@ ALFANUM     [a-zA-Z0-9_]
   * de forma mais simples em flex, escrever as duas alternativas como
   * regras separadas, deixando o proprio flex escolher o casamento mais
   * longo -- veja a explicacao na Secao 2 do enunciado). */
-"=="                { return EQ; }
-"="                 { return ASSIGN; }
+"=="                { ultimo_token=EQ;return EQ; }
+"="                 { ultimo_token=ASSIGN;return ASSIGN; }
 
  /* TODO(aluno): complete os demais operadores que compartilham prefixo,
   * seguindo o mesmo padrao do exemplo acima:
@@ -194,21 +228,29 @@ ALFANUM     [a-zA-Z0-9_]
   *   &&             ->  AND
   *   ||             ->  OR
   */
+  "!="              {ultimo_token=NEQ;return NEQ; }
+  "!"               {ultimo_token=NOT;return NOT; }
+  "<="              {ultimo_token=LEQ;return LEQ; }
+  "<"               {ultimo_token=LT;return LT; }
+  ">="              {ultimo_token=GEQ;return GEQ; }
+  ">"               {ultimo_token=GT;return GT; }
+  "&&"              {ultimo_token=AND;return AND; }
+  "||"              {ultimo_token=OR;return OR; }
 
  /* --- Operadores aritmeticos e simbolos de pontuacao (ja prontos) ------ */
-"+"                 { return PLUS; }
-"-"                 { return MINUS; }
-"*"                 { return MUL; }
-"/"                 { return DIV; }
-"%"                 { return MOD; }
-";"                 { return SEMICOLON; }
-","                 { return COMMA; }
-"("                 { return LPAREN; }
-")"                 { return RPAREN; }
-"{"                 { return LBRACE; }
-"}"                 { return RBRACE; }
-"["                 { return LBRACKET; }
-"]"                 { return RBRACKET; }
+"+"                 { ultimo_token=PLUS;return PLUS; }
+"-"                 { ultimo_token=MINUS;return MINUS; }
+"*"                 { ultimo_token=MUL;return MUL; }
+"/"                 { ultimo_token=DIV;return DIV; }
+"%"                 { ultimo_token=MOD;return MOD; }
+";"                 { ultimo_token=SEMICOLON;return SEMICOLON; }
+","                 { ultimo_token=COMMA;return COMMA; }
+"("                 { ultimo_token=LPAREN;return LPAREN; }
+")"                 { ultimo_token=RPAREN;return RPAREN; }
+"{"                 { ultimo_token=LBRACE;return LBRACE; }
+"}"                 { ultimo_token=RBRACE;return RBRACE; }
+"["                 { ultimo_token=LBRACKET;return LBRACKET; }
+"]"                 { ultimo_token=RBRACKET;return RBRACKET; }
 
  /* --- Caractere invalido -------------------------------------------------
   * Casa com qualquer caractere que nao tenha correspondido a nenhuma
@@ -248,7 +290,7 @@ int main(int argc, char **argv) {
         return 1;
     }
     yyin = arquivo_fonte;
-
+    ultimo_token = 0;
     int tipo;
     while ((tipo = yylex()) != END_OF_FILE) {
         if (tipo == UNDEF) {

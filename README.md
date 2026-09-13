@@ -70,9 +70,9 @@ O programa lê o arquivo Micro C informado, imprime os tokens reconhecidos e rep
 
 ## 👤 Autor(es)
 
-| Nome | Matrícula |
-|------|-----------|
-| _preencher_ | _preencher_ |
+|         Nome            |  Matrícula   |
+|-------------------------|--------------|
+| Mileny de Almeida Tobias| 202319040282 |
 | _preencher (se houver dupla)_ | _preencher_ |
 
 ## 🎓 Disciplina
