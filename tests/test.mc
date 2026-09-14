@@ -80,6 +80,10 @@ int main() {
 
     return 0;
 }
+/* teste de string nao termindada*/
+print("oi);
+
+
 /* ===== CASOS DE ERRO LEXICO ===== */
 /* Estes casos devem gerar UNDEF no scanner */
 
@@ -88,3 +92,6 @@ int main() {
 $    /* caractere invalido */
 */   /* comentario nao iniciado */
 /* este comentario nunca fecha
+
+/*teste eof em string*/
+print("oiiii
