@@ -69,6 +69,7 @@ static const char *nome_token[] = {
 typedef struct {
     char *symbol;      /* lexema para ID, INTEGERCONST, CHARCONST, STRINGCONST */
     char *error_msg;   /* mensagem de erro, usada apenas quando tipo == UNDEF   */
+    int symbol_len;     /* tamanho do lexema, podendo conter caractere nulo */
 } YYSTYPE;
 
 YYSTYPE microc_yylval;
@@ -77,13 +78,15 @@ YYSTYPE microc_yylval;
  * toda vez que uma quebra de linha for consumida pelo scanner (seja em
  * codigo "normal", dentro de comentarios ou dentro de strings). */
 int linha_atual = 1;
-int linha_atual;
 int ultimo_token;  /* guarda o último token reconhecido, usado para inteiros negativos*/
 
 /* Funcao auxiliar para preencher microc_yylval.symbol com uma copia do
  * texto reconhecido (yytext). Sinta-se livre para usar/adaptar. */
 static void guarda_lexema(void) {
-    microc_yylval.symbol = strdup(yytext);
+    microc_yylval.symbol = malloc(yyleng + 1);
+    memcpy(microc_yylval.symbol, yytext, yyleng);
+    microc_yylval.symbol[yyleng] = '\0';
+    microc_yylval.symbol_len = yyleng;
 }
 
 %}
@@ -109,7 +112,7 @@ ALFANUM     [a-zA-Z0-9_]
   * do flex), pois o token UNDEF tambem vale 0 no enum TokenType -- se
   * dependessemos do comportamento padrao, um erro lexico seria
   * confundido com o fim do arquivo pelo main() de teste abaixo. */
-<<EOF>>             { return END_OF_FILE; }
+<INITIAL><<EOF>>    { return END_OF_FILE; }
 
  /* --- Espacos em branco e quebras de linha ---------------------------- */
 \n                  { linha_atual++; }
@@ -125,6 +128,7 @@ ALFANUM     [a-zA-Z0-9_]
 <COMMENT>\n         { linha_atual++; }
 <COMMENT><<EOF>>    {
                         microc_yylval.error_msg = "EOF em comentario";
+                        BEGIN(INITIAL);
                         return UNDEF;
                     }
 <COMMENT>.          { /* consome qualquer outro caractere dentro do comentario */ }
@@ -189,7 +193,7 @@ ALFANUM     [a-zA-Z0-9_]
                     }
 {DIGIT}+                {
                         guarda_lexema();
-                        ultimo_token = INTEGERCONST
+                        ultimo_token = INTEGERCONST;
                         return INTEGERCONST;
                     }                  
 
@@ -198,6 +202,35 @@ ALFANUM     [a-zA-Z0-9_]
   * aspas simples) e devolver CHARCONST. Trate tambem o caso de erro em
   * que as aspas simples nao sao fechadas corretamente (token UNDEF). */
 
+'([^'\n\\]|\\.)' {
+                    char c;
+                    if (yytext[1] == '\\') {
+                        if (yytext[2] == 'n')
+                            c = '\n';
+                        else if (yytext[2] == 't')
+                            c = '\t';
+                        else if (yytext[2] == '\\')
+                            c = '\\';
+                        else if (yytext[2] == '\'')
+                            c = '\'';
+                        else if (yytext[2] == '0')
+                            c = '\0';
+                        else
+                            c = yytext[2];
+                    } else {
+                        c = yytext[1];
+                    }
+
+                    microc_yylval.symbol = malloc(1);
+                    memcpy(microc_yylval.symbol, &c, 1);
+                    microc_yylval.symbol_len = 1;
+                    return CHARCONST;
+                }
+
+'[^'\n]* {
+            microc_yylval.error_msg ="Constante de caractere nao terminada";
+            return UNDEF;
+            }
 
  /* --- Constantes de string -------------------------------------------
   * TODO(aluno): reconhecer o padrao "[^"\n]*" (uma ou mais aspas
@@ -211,6 +244,49 @@ ALFANUM     [a-zA-Z0-9_]
   * Alem disso, converta as sequencias de escape (\n, \t, \\, \", \0)
   * para os caracteres correspondentes antes de armazenar o lexema. */
 
+\"([^"\n\\]|\\.)*\0([^"\n\\]|\\.)*\" {
+                        microc_yylval.error_msg = "String contem caractere nulo";
+                        return UNDEF;
+                    }
+
+\"([^"\n\\]|\\.)*\" {
+                        int tamanho = yyleng - 2;
+                        int tamanho_saida = 0;
+                        microc_yylval.symbol = malloc(tamanho + 1);
+                        for (int i = 1; i < yyleng - 1; i++) {
+                            if (yytext[i] == '\\') {
+                                i++;
+                                if (yytext[i] == 'n')
+                                    microc_yylval.symbol[tamanho_saida++] = '\n';
+                                else if (yytext[i] == 't')
+                                    microc_yylval.symbol[tamanho_saida++] = '\t';
+                                else if (yytext[i] == '\\')
+                                    microc_yylval.symbol[tamanho_saida++] = '\\';
+                                else if (yytext[i] == '"')
+                                    microc_yylval.symbol[tamanho_saida++] = '"';
+                                else if (yytext[i] == '0')
+                                    microc_yylval.symbol[tamanho_saida++] = '\0';
+                                else
+                                    microc_yylval.symbol[tamanho_saida++] = yytext[i];
+                            } else {
+                                microc_yylval.symbol[tamanho_saida++] = yytext[i];
+                            }
+                        }
+                        microc_yylval.symbol_len = tamanho_saida;
+                        microc_yylval.symbol[tamanho_saida] = '\0';
+                        return STRINGCONST;
+                    }
+
+\"([^"\n\\]|\\.)*\n {
+                        linha_atual++;
+                        microc_yylval.error_msg = "String nao terminada";
+                        return UNDEF;
+                    }
+
+\"([^"\n\\]|\\.)* {
+                        microc_yylval.error_msg = "EOF em string";
+                        return UNDEF;
+                    }
 
  /* --- Operadores relacionais e logicos ---------------------------------
   * O caso de '=' esta implementado como EXEMPLO do uso de lookahead
