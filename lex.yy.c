@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 36
-#define YY_END_OF_BUFFER 37
+#define YY_NUM_RULES 42
+#define YY_END_OF_BUFFER 43
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -360,13 +360,15 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[49] =
+static const flex_int16_t yy_accept[65] =
     {   0,
-        0,    0,    0,    0,   37,   35,    2,    1,   15,   26,
-       35,   29,   30,   24,   22,   28,   23,   25,   11,   27,
-       17,   13,   19,    9,   33,   34,   31,   35,   32,    7,
-        6,    7,    2,   14,   20,    8,   10,    4,    3,   11,
-       16,   12,   18,    9,   21,    5,    3,    0
+        0,    0,    0,    0,   43,   41,    2,    1,   21,   17,
+       32,   41,   13,   35,   36,   30,   28,   34,   29,   31,
+       11,   33,   23,   19,   25,    9,   39,   40,   37,   41,
+       38,    7,    6,    7,    2,   20,   17,   16,   15,    0,
+       17,   26,   13,   13,    8,   10,    4,    3,   11,   22,
+       18,   24,    9,   27,    5,   17,   14,    0,   17,   13,
+       12,    0,    3,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -374,17 +376,17 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    2,    4,    1,    1,    1,    5,    6,    1,    7,
-        8,    9,   10,   11,   12,    1,   13,   14,   14,   14,
-       14,   14,   14,   14,   14,   14,   14,    1,   15,   16,
-       17,   18,    1,    1,   19,   19,   19,   19,   19,   19,
-       19,   19,   19,   19,   19,   19,   19,   19,   19,   19,
-       19,   19,   19,   19,   19,   19,   19,   19,   19,   19,
-       20,    1,   21,    1,   19,    1,   19,   19,   19,   19,
+        1,    2,    4,    5,    1,    1,    6,    7,    8,    9,
+       10,   11,   12,   13,   14,    1,   15,   16,   16,   16,
+       16,   16,   16,   16,   16,   16,   16,    1,   17,   18,
+       19,   20,    1,    1,   21,   21,   21,   21,   21,   21,
+       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
+       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
+       22,   23,   24,    1,   21,    1,   21,   21,   21,   21,
 
-       19,   19,   19,   19,   19,   19,   19,   19,   19,   19,
-       19,   19,   19,   19,   19,   19,   19,   19,   19,   19,
-       19,   19,   22,   23,   24,    1,    1,    1,    1,    1,
+       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
+       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
+       21,   21,   25,   26,   27,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -401,53 +403,69 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[25] =
+static const YY_CHAR yy_meta[29] =
     {   0,
-        1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    2,    1,    1,    1,    1,    3,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1
+        1,    1,    1,    1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[51] =
+static const flex_int16_t yy_base[71] =
     {   0,
-        0,    0,   22,   23,   52,   53,   49,   53,   33,   53,
-       43,   53,   53,   35,   53,   53,   33,   20,   32,   53,
-       28,   27,   26,   16,   53,   53,   53,   19,   53,   53,
-       53,   25,   35,   53,   53,   53,   22,   53,    0,   14,
-       53,   53,   53,   20,   53,   53,    0,   53,   39,   26
+        0,    0,   26,   27,   94,   95,   91,   95,   72,   28,
+       95,   81,   53,   95,   95,   60,   95,   95,   58,   21,
+       55,   95,   51,   50,   48,   18,   95,   95,   95,   38,
+       95,   95,   95,   48,   60,   95,   37,   95,   95,   56,
+       38,   95,   50,   49,   95,   39,   95,    0,   37,   95,
+       95,   95,   28,   95,   95,   45,   95,   44,   49,   38,
+       95,   37,    0,   95,   77,   80,   34,   83,   86,   89
     } ;
 
-static const flex_int16_t yy_def[51] =
+static const flex_int16_t yy_def[71] =
     {   0,
-       48,    1,   49,   49,   48,   48,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   48,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   48,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   48,   48,   48,   50,   48,
-       48,   48,   48,   48,   48,   48,   50,    0,   48,   48
+       64,    1,   65,   65,   64,   64,   64,   64,   64,   66,
+       64,   64,   67,   64,   64,   64,   64,   64,   64,   64,
+       64,   64,   64,   64,   64,   64,   64,   64,   64,   64,
+       64,   64,   64,   64,   64,   64,   66,   64,   64,   66,
+       68,   64,   69,   67,   64,   64,   64,   70,   64,   64,
+       64,   64,   64,   64,   64,   68,   64,   68,   68,   69,
+       64,   64,   70,    0,   64,   64,   64,   64,   64,   64
     } ;
 
-static const flex_int16_t yy_nxt[78] =
+static const flex_int16_t yy_nxt[124] =
     {   0,
         6,    7,    8,    9,   10,   11,   12,   13,   14,   15,
        16,   17,   18,   19,   20,   21,   22,   23,   24,   25,
-       26,   27,   28,   29,   31,   31,   47,   40,   38,   44,
-       32,   32,   39,   44,   44,   37,   33,   46,   44,   30,
-       30,   45,   43,   42,   41,   40,   37,   36,   35,   34,
-       33,   48,    5,   48,   48,   48,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   48,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   48,   48
+       26,   27,    6,   28,   29,   30,   31,    6,   33,   33,
+       38,   47,   39,   53,   43,   48,   34,   34,   53,   38,
+       38,   39,   57,   53,   61,   64,   64,   38,   53,   57,
+       40,   38,   49,   57,   46,   41,   62,   61,   64,   40,
+       58,   35,   55,   54,   41,   59,   52,   58,   51,   50,
+       49,   58,   59,   46,   45,   44,   59,   32,   32,   32,
+       37,   37,   37,   56,   56,   56,   60,   42,   60,   63,
+       36,   63,   35,   64,    5,   64,   64,   64,   64,   64,
+
+       64,   64,   64,   64,   64,   64,   64,   64,   64,   64,
+       64,   64,   64,   64,   64,   64,   64,   64,   64,   64,
+       64,   64,   64
     } ;
 
-static const flex_int16_t yy_chk[78] =
+static const flex_int16_t yy_chk[124] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    3,    4,   50,   40,   18,   24,
-        3,    4,   18,   44,   24,   37,   33,   32,   44,   49,
-       49,   28,   23,   22,   21,   19,   17,   14,   11,    9,
-        7,    5,   48,   48,   48,   48,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   48,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   48,   48
+        1,    1,    1,    1,    1,    1,    1,    1,    3,    4,
+       10,   20,   10,   26,   67,   20,    3,    4,   26,   37,
+       41,   37,   41,   53,   62,   60,   58,   56,   53,   56,
+       10,   59,   49,   59,   46,   10,   44,   43,   40,   37,
+       41,   35,   34,   30,   37,   41,   25,   56,   24,   23,
+       21,   59,   56,   19,   16,   13,   59,   65,   65,   65,
+       66,   66,   66,   68,   68,   68,   69,   12,   69,   70,
+        9,   70,    7,    5,   64,   64,   64,   64,   64,   64,
+
+       64,   64,   64,   64,   64,   64,   64,   64,   64,   64,
+       64,   64,   64,   64,   64,   64,   64,   64,   64,   64,
+       64,   64,   64
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -535,6 +553,7 @@ static const char *nome_token[] = {
 typedef struct {
     char *symbol;      /* lexema para ID, INTEGERCONST, CHARCONST, STRINGCONST */
     char *error_msg;   /* mensagem de erro, usada apenas quando tipo == UNDEF   */
+    int symbol_len;     /* tamanho do lexema, podendo conter caractere nulo */
 } YYSTYPE;
 
 YYSTYPE microc_yylval;
@@ -543,21 +562,23 @@ YYSTYPE microc_yylval;
  * toda vez que uma quebra de linha for consumida pelo scanner (seja em
  * codigo "normal", dentro de comentarios ou dentro de strings). */
 int linha_atual = 1;
-int linha_atual;
 int ultimo_token;  /* guarda o último token reconhecido, usado para inteiros negativos*/
 
 /* Funcao auxiliar para preencher microc_yylval.symbol com uma copia do
  * texto reconhecido (yytext). Sinta-se livre para usar/adaptar. */
 static void guarda_lexema(void) {
-    microc_yylval.symbol = strdup(yytext);
+    microc_yylval.symbol = malloc(yyleng + 1);
+    memcpy(microc_yylval.symbol, yytext, yyleng);
+    microc_yylval.symbol[yyleng] = '\0';
+    microc_yylval.symbol_len = yyleng;
 }
 
-#line 556 "lex.yy.c"
+#line 577 "lex.yy.c"
 /* -----------------------------------------------------------------------
  * 2. SECAO DE DEFINICOES
  * ------------------------------------------------------------------- */
 
-#line 561 "lex.yy.c"
+#line 582 "lex.yy.c"
 
 #define INITIAL 0
 #define COMMENT 1
@@ -775,10 +796,10 @@ YY_DECL
 		}
 
 	{
-#line 101 "microc.flex"
-
-
 #line 104 "microc.flex"
+
+
+#line 107 "microc.flex"
  /* -----------------------------------------------------------------------
   * 3. SECAO DE REGRAS
   * --------------------------------------------------------------------- */
@@ -788,7 +809,7 @@ YY_DECL
   * do flex), pois o token UNDEF tambem vale 0 no enum TokenType -- se
   * dependessemos do comportamento padrao, um erro lexico seria
   * confundido com o fim do arquivo pelo main() de teste abaixo. */
-#line 792 "lex.yy.c"
+#line 813 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -815,13 +836,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 49 )
+				if ( yy_current_state >= 65 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 53 );
+		while ( yy_base[yy_current_state] != 95 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -846,20 +867,19 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case YY_STATE_EOF(INITIAL):
-case YY_STATE_EOF(COMMENT):
-#line 113 "microc.flex"
+#line 116 "microc.flex"
 { return END_OF_FILE; }
 	YY_BREAK
 /* --- Espacos em branco e quebras de linha ---------------------------- */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 116 "microc.flex"
+#line 119 "microc.flex"
 { linha_atual++; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 117 "microc.flex"
+#line 120 "microc.flex"
 { /* ignora espacos em branco */ }
 	YY_BREAK
 /* --- Comentarios ------------------------------------------------------
@@ -867,40 +887,42 @@ YY_RULE_SETUP
   * de tratamento de erro via EOF dentro de um estado especial. */
 case 3:
 YY_RULE_SETUP
-#line 122 "microc.flex"
+#line 125 "microc.flex"
 { /* comentario de linha: ignora ate o fim da linha */ }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 124 "microc.flex"
+#line 127 "microc.flex"
 { BEGIN(COMMENT); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 125 "microc.flex"
+#line 128 "microc.flex"
 { BEGIN(INITIAL); }
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 126 "microc.flex"
+#line 129 "microc.flex"
 { linha_atual++; }
 	YY_BREAK
-#line 127 "microc.flex"
+case YY_STATE_EOF(COMMENT):
+#line 130 "microc.flex"
 {
                         microc_yylval.error_msg = "EOF em comentario";
+                        BEGIN(INITIAL);
                         return UNDEF;
                     }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 131 "microc.flex"
+#line 135 "microc.flex"
 { /* consome qualquer outro caractere dentro do comentario */ }
 	YY_BREAK
 /* Fechamento de comentario sem abertura correspondente. */
 case 8:
 YY_RULE_SETUP
-#line 134 "microc.flex"
+#line 138 "microc.flex"
 {
                         microc_yylval.error_msg = "Comentario nao iniciado";
                         return UNDEF;
@@ -916,7 +938,7 @@ YY_RULE_SETUP
   * guarda_lexema() (ou equivalente) quando o token for de fato ID. */
 case 9:
 YY_RULE_SETUP
-#line 147 "microc.flex"
+#line 151 "microc.flex"
 {
                         /* TODO(aluno): reconhecer palavras reservadas aqui */
                         if(strcmp(yytext,"if")==0){
@@ -949,7 +971,7 @@ YY_RULE_SETUP
   * e, na verdade, o operador de subtracao. */
 case 10:
 YY_RULE_SETUP
-#line 177 "microc.flex"
+#line 181 "microc.flex"
 {
                         if(ultimo_token==INTEGERCONST||ultimo_token==ID||ultimo_token==RPAREN||ultimo_token==RBRACKET){
                             /*vem depois de um valor -> é subtracao */
@@ -967,7 +989,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 191 "microc.flex"
+#line 195 "microc.flex"
 {
                         guarda_lexema();
                         ultimo_token = INTEGERCONST;
@@ -978,6 +1000,43 @@ YY_RULE_SETUP
   * TODO(aluno): reconhecer o padrao 'x' (aspas simples, um caractere,
   * aspas simples) e devolver CHARCONST. Trate tambem o caso de erro em
   * que as aspas simples nao sao fechadas corretamente (token UNDEF). */
+case 12:
+YY_RULE_SETUP
+#line 206 "microc.flex"
+{
+                    char c;
+                    if (yytext[1] == '\\') {
+                        if (yytext[2] == 'n')
+                            c = '\n';
+                        else if (yytext[2] == 't')
+                            c = '\t';
+                        else if (yytext[2] == '\\')
+                            c = '\\';
+                        else if (yytext[2] == '\'')
+                            c = '\'';
+                        else if (yytext[2] == '0')
+                            c = '\0';
+                        else
+                            c = yytext[2];
+                    } else {
+                        c = yytext[1];
+                    }
+
+                    microc_yylval.symbol = malloc(1);
+                    memcpy(microc_yylval.symbol, &c, 1);
+                    microc_yylval.symbol_len = 1;
+
+                    return CHARCONST;
+                }
+	YY_BREAK
+case 13:
+YY_RULE_SETUP
+#line 232 "microc.flex"
+{
+            microc_yylval.error_msg ="Constante de caractere nao terminada";
+            return UNDEF;
+            }
+	YY_BREAK
 /* --- Constantes de string -------------------------------------------
   * TODO(aluno): reconhecer o padrao "[^"\n]*" (uma ou mais aspas
   * duplas delimitando o conteudo da string) e devolver STRINGCONST.
@@ -989,20 +1048,77 @@ YY_RULE_SETUP
   *     ("String contem caractere nulo")
   * Alem disso, converta as sequencias de escape (\n, \t, \\, \", \0)
   * para os caracteres correspondentes antes de armazenar o lexema. */
+case 14:
+YY_RULE_SETUP
+#line 249 "microc.flex"
+{
+                        microc_yylval.error_msg = "String contem caractere nulo";
+                        return UNDEF;
+                    }
+	YY_BREAK
+case 15:
+YY_RULE_SETUP
+#line 254 "microc.flex"
+{
+                        int tamanho = yyleng - 2;
+                        int tamanho_saida = 0;
+                        microc_yylval.symbol = malloc(tamanho + 1);
+                        for (int i = 1; i < yyleng - 1; i++) {
+                            if (yytext[i] == '\\') {
+                                i++;
+                                if (yytext[i] == 'n')
+                                    microc_yylval.symbol[tamanho_saida++] = '\n';
+                                else if (yytext[i] == 't')
+                                    microc_yylval.symbol[tamanho_saida++] = '\t';
+                                else if (yytext[i] == '\\')
+                                    microc_yylval.symbol[tamanho_saida++] = '\\';
+                                else if (yytext[i] == '"')
+                                    microc_yylval.symbol[tamanho_saida++] = '"';
+                                else if (yytext[i] == '0')
+                                    microc_yylval.symbol[tamanho_saida++] = '\0';
+                                else
+                                    microc_yylval.symbol[tamanho_saida++] = yytext[i];
+                            } else {
+                                microc_yylval.symbol[tamanho_saida++] = yytext[i];
+                            }
+                        }
+                        microc_yylval.symbol_len = tamanho_saida;
+                        microc_yylval.symbol[tamanho_saida] = '\0';
+                        return STRINGCONST;
+                    }
+	YY_BREAK
+case 16:
+/* rule 16 can match eol */
+YY_RULE_SETUP
+#line 282 "microc.flex"
+{
+                        linha_atual++;
+                        microc_yylval.error_msg = "String nao terminada";
+                        return UNDEF;
+                    }
+	YY_BREAK
+case 17:
+YY_RULE_SETUP
+#line 288 "microc.flex"
+{
+                        microc_yylval.error_msg = "EOF em string";
+                        return UNDEF;
+                    }
+	YY_BREAK
 /* --- Operadores relacionais e logicos ---------------------------------
   * O caso de '=' esta implementado como EXEMPLO do uso de lookahead
   * (yytext mostra o que foi casado; voce pode usar input()/unput() ou,
   * de forma mais simples em flex, escrever as duas alternativas como
   * regras separadas, deixando o proprio flex escolher o casamento mais
   * longo -- veja a explicacao na Secao 2 do enunciado). */
-case 12:
+case 18:
 YY_RULE_SETUP
-#line 222 "microc.flex"
+#line 299 "microc.flex"
 { ultimo_token=EQ;return EQ; }
 	YY_BREAK
-case 13:
+case 19:
 YY_RULE_SETUP
-#line 223 "microc.flex"
+#line 300 "microc.flex"
 { ultimo_token=ASSIGN;return ASSIGN; }
 	YY_BREAK
 /* TODO(aluno): complete os demais operadores que compartilham prefixo,
@@ -1013,129 +1129,129 @@ YY_RULE_SETUP
   *   &&             ->  AND
   *   ||             ->  OR
   */
-case 14:
-YY_RULE_SETUP
-#line 233 "microc.flex"
-{ultimo_token=NEQ;return NEQ; }
-	YY_BREAK
-case 15:
-YY_RULE_SETUP
-#line 234 "microc.flex"
-{ultimo_token=NOT;return NOT; }
-	YY_BREAK
-case 16:
-YY_RULE_SETUP
-#line 235 "microc.flex"
-{ultimo_token=LEQ;return LEQ; }
-	YY_BREAK
-case 17:
-YY_RULE_SETUP
-#line 236 "microc.flex"
-{ultimo_token=LT;return LT; }
-	YY_BREAK
-case 18:
-YY_RULE_SETUP
-#line 237 "microc.flex"
-{ultimo_token=GEQ;return GEQ; }
-	YY_BREAK
-case 19:
-YY_RULE_SETUP
-#line 238 "microc.flex"
-{ultimo_token=GT;return GT; }
-	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 239 "microc.flex"
-{ultimo_token=AND;return AND; }
+#line 310 "microc.flex"
+{ultimo_token=NEQ;return NEQ; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 240 "microc.flex"
-{ultimo_token=OR;return OR; }
+#line 311 "microc.flex"
+{ultimo_token=NOT;return NOT; }
 	YY_BREAK
-/* --- Operadores aritmeticos e simbolos de pontuacao (ja prontos) ------ */
 case 22:
 YY_RULE_SETUP
-#line 243 "microc.flex"
-{ ultimo_token=PLUS;return PLUS; }
+#line 312 "microc.flex"
+{ultimo_token=LEQ;return LEQ; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 244 "microc.flex"
-{ ultimo_token=MINUS;return MINUS; }
+#line 313 "microc.flex"
+{ultimo_token=LT;return LT; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 245 "microc.flex"
-{ ultimo_token=MUL;return MUL; }
+#line 314 "microc.flex"
+{ultimo_token=GEQ;return GEQ; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 246 "microc.flex"
-{ ultimo_token=DIV;return DIV; }
+#line 315 "microc.flex"
+{ultimo_token=GT;return GT; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 247 "microc.flex"
-{ ultimo_token=MOD;return MOD; }
+#line 316 "microc.flex"
+{ultimo_token=AND;return AND; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 248 "microc.flex"
-{ ultimo_token=SEMICOLON;return SEMICOLON; }
+#line 317 "microc.flex"
+{ultimo_token=OR;return OR; }
 	YY_BREAK
+/* --- Operadores aritmeticos e simbolos de pontuacao (ja prontos) ------ */
 case 28:
 YY_RULE_SETUP
-#line 249 "microc.flex"
-{ ultimo_token=COMMA;return COMMA; }
+#line 320 "microc.flex"
+{ ultimo_token=PLUS;return PLUS; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 250 "microc.flex"
-{ ultimo_token=LPAREN;return LPAREN; }
+#line 321 "microc.flex"
+{ ultimo_token=MINUS;return MINUS; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 251 "microc.flex"
-{ ultimo_token=RPAREN;return RPAREN; }
+#line 322 "microc.flex"
+{ ultimo_token=MUL;return MUL; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 252 "microc.flex"
-{ ultimo_token=LBRACE;return LBRACE; }
+#line 323 "microc.flex"
+{ ultimo_token=DIV;return DIV; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 253 "microc.flex"
-{ ultimo_token=RBRACE;return RBRACE; }
+#line 324 "microc.flex"
+{ ultimo_token=MOD;return MOD; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 254 "microc.flex"
-{ ultimo_token=LBRACKET;return LBRACKET; }
+#line 325 "microc.flex"
+{ ultimo_token=SEMICOLON;return SEMICOLON; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 255 "microc.flex"
+#line 326 "microc.flex"
+{ ultimo_token=COMMA;return COMMA; }
+	YY_BREAK
+case 35:
+YY_RULE_SETUP
+#line 327 "microc.flex"
+{ ultimo_token=LPAREN;return LPAREN; }
+	YY_BREAK
+case 36:
+YY_RULE_SETUP
+#line 328 "microc.flex"
+{ ultimo_token=RPAREN;return RPAREN; }
+	YY_BREAK
+case 37:
+YY_RULE_SETUP
+#line 329 "microc.flex"
+{ ultimo_token=LBRACE;return LBRACE; }
+	YY_BREAK
+case 38:
+YY_RULE_SETUP
+#line 330 "microc.flex"
+{ ultimo_token=RBRACE;return RBRACE; }
+	YY_BREAK
+case 39:
+YY_RULE_SETUP
+#line 331 "microc.flex"
+{ ultimo_token=LBRACKET;return LBRACKET; }
+	YY_BREAK
+case 40:
+YY_RULE_SETUP
+#line 332 "microc.flex"
 { ultimo_token=RBRACKET;return RBRACKET; }
 	YY_BREAK
 /* --- Caractere invalido -------------------------------------------------
   * Casa com qualquer caractere que nao tenha correspondido a nenhuma
   * regra anterior. Deve ser SEMPRE a ultima regra do arquivo. */
-case 35:
+case 41:
 YY_RULE_SETUP
-#line 260 "microc.flex"
+#line 337 "microc.flex"
 {
                         microc_yylval.error_msg = strdup(yytext);
                         return UNDEF;
                     }
 	YY_BREAK
-case 36:
+case 42:
 YY_RULE_SETUP
-#line 265 "microc.flex"
+#line 342 "microc.flex"
 ECHO;
 	YY_BREAK
-#line 1139 "lex.yy.c"
+#line 1255 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1421,7 +1537,7 @@ static int yy_get_next_buffer (void)
 
 	for ( yy_cp = (yytext_ptr) + YY_MORE_ADJ; yy_cp < (yy_c_buf_p); ++yy_cp )
 		{
-		YY_CHAR yy_c = (*yy_cp ? yy_ec[YY_SC_TO_UI(*yy_cp)] : 1);
+		YY_CHAR yy_c = (*yy_cp ? yy_ec[YY_SC_TO_UI(*yy_cp)] : 28);
 		if ( yy_accept[yy_current_state] )
 			{
 			(yy_last_accepting_state) = yy_current_state;
@@ -1430,7 +1546,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 49 )
+			if ( yy_current_state >= 65 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1449,7 +1565,7 @@ static int yy_get_next_buffer (void)
 	int yy_is_jam;
     	char *yy_cp = (yy_c_buf_p);
 
-	YY_CHAR yy_c = 1;
+	YY_CHAR yy_c = 28;
 	if ( yy_accept[yy_current_state] )
 		{
 		(yy_last_accepting_state) = yy_current_state;
@@ -1458,11 +1574,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 49 )
+		if ( yy_current_state >= 65 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 48);
+	yy_is_jam = (yy_current_state == 64);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -2138,7 +2254,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 265 "microc.flex"
+#line 342 "microc.flex"
 
 
 /* -----------------------------------------------------------------------
