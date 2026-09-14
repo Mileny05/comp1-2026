@@ -16,3 +16,15 @@ finalidade: ver se estava tudo certo
 o que fiz: entendi o feedback e onde dizia que estava errado eu ia corrigir (mas não dando o trecho para copiar)
 
 mileny:
+
+ferramenta: Claude
+trecho: regra de reconhecimento de inteiros negativos
+finalidade: pedi uma explicação de como o flex funciona ao casar padrões, para entender como implementar a lógica que diferencia quando um "-" é subtração e quando faz parte de um número negativo.
+O que fiz: entendi o conceito de lookahead com yyless() e escrevi a regra, adaptando a verificação de ultimo_token aos tokens do meu arquivo.
+
+
+ferramenta: Claude (Adapta ONE)
+trecho: regras de palavras reservadas, operadores relacionais/lógicos,
+        pontuação e constantes inteiras em microc.flex
+finalidade: pedi uma revisão desses trechos do código, comparando com os requisitos do enunciado (Secao 4 e 5), para verificar se os tokens estavam corretos e se faltava algo
+o que fiz: usei a revisão como verificação — identifiquei que faltava atualizar a variável ultimo_token em algumas regras e corrigi
