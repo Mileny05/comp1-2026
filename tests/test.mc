@@ -92,6 +92,6 @@ print("oi);
 $    /* caractere invalido */
 */   /* comentario nao iniciado */
 /* este comentario nunca fecha
-
 /*teste eof em string*/
+print("oi\n");
 print("oiiii

@@ -150,23 +150,32 @@ ALFANUM     [a-zA-Z0-9_]
 {LETRA}{ALFANUM}*   {
                         /* TODO(aluno): reconhecer palavras reservadas aqui */
                         if(strcmp(yytext,"if")==0){
+                            ultimo_token = IF;
                             return IF;
                         }else if(strcmp(yytext,"main")==0){
+                            ultimo_token = MAIN;
                             return MAIN;
                         }else if(strcmp(yytext,"else")==0){
+                            ultimo_token = ELSE;
                             return ELSE;
                         }else if(strcmp(yytext,"for")==0){
+                            ultimo_token = FOR;
                             return FOR;
                         }else if(strcmp(yytext,"return")==0){
+                            ultimo_token = RETURN;
                             return RETURN;
                         }else if(strcmp(yytext,"int")==0){
+                            ultimo_token = INT;
                             return INT;
                         }else if(strcmp(yytext,"char")==0){
+                            ultimo_token = CHAR;
                             return CHAR;
                         }else if(strcmp(yytext,"print")==0){
+                            ultimo_token = PRINT;
                             return PRINT;
                         }
                         guarda_lexema();
+                        ultimo_token = ID;
                         return ID;
                     }
 
@@ -224,6 +233,7 @@ ALFANUM     [a-zA-Z0-9_]
                     microc_yylval.symbol = malloc(1);
                     memcpy(microc_yylval.symbol, &c, 1);
                     microc_yylval.symbol_len = 1;
+                    ultimo_token = CHARCONST;
                     return CHARCONST;
                 }
 
@@ -274,6 +284,7 @@ ALFANUM     [a-zA-Z0-9_]
                         }
                         microc_yylval.symbol_len = tamanho_saida;
                         microc_yylval.symbol[tamanho_saida] = '\0';
+                        ultimo_token = STRINGCONST;
                         return STRINGCONST;
                     }
 
