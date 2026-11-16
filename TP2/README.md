@@ -1,6 +1,6 @@
-aluno: Maryana 202319040649
+aluno: Maryana 202319040649; 
 
-aluno: Mileny 202319040282
+Mileny 202319040282
 
 uso_ia: sim
 
@@ -126,6 +126,3 @@ O `make test` roda 29 testes e todos passam. O `valgrind` não achou vazamento n
 - `src/`: código do gerador
 - `microc/`: scanner do TP1 adaptado
 - `testes/`: gramáticas, programas de teste e saídas esperadas
-
-
-repositório original: https://github.com/maymarymay/compiladoresI
