@@ -80,6 +80,29 @@ int main() {
 
     return 0;
 }
+/* Teste: sequencias de escape em caractere e string */
+c = '\n';
+c = '\\';
+c = '\'';
+print("tab\t aspas \" barra \\ fim\n");
+print("");
+
+/* Teste: menos depois de um valor e subtracao, senao e numero negativo */
+x = y -1;
+x = 'a' -1;
+x = letras[0] -2;
+x = (y) -3;
+x = y * -4;
+
+/* Teste: operadores colados, sem espacos */
+x=y<=z>=w==v!=u&&t||!s;
+
+/* Teste: identificadores parecidos com palavras reservadas */
+int inteiro; char _char2; iff = mainx + For;
+
+/* teste de constante de caractere nao terminada */
+c = 'x;
+
 /* teste de string nao termindada*/
 print("oi);
 
@@ -91,7 +114,8 @@ print("oi);
 #    /* caractere invalido */
 $    /* caractere invalido */
 */   /* comentario nao iniciado */
-/* este comentario nunca fecha
+/* um comentario pode ter varias linhas
+   e simbolos como @ # $ sem gerar erro */
 /*teste eof em string*/
 print("oi\n");
 print("oiiii
